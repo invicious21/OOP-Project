@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`event` (
   `event_type_id` INT NOT NULL,
   `status_id` INT NOT NULL,
   PRIMARY KEY (`id_event`),
-  INDEX `fk_event_event_type1_idx` (`event_type_id` ASC),
-  INDEX `fk_event_status1_idx` (`status_id` ASC),
+  INDEX `fk_event_event_type1_idx` (`event_type_id` ASC) ,
+  INDEX `fk_event_status1_idx` (`status_id` ASC) ,
   CONSTRAINT `fk_event_event_type1`
     FOREIGN KEY (`event_type_id`)
     REFERENCES `mydb`.`event_type` (`id_event`)
@@ -70,6 +70,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `password` VARCHAR(20) NOT NULL,
   `email` VARCHAR(30) NULL,
   `user_phone` VARCHAR(45) NULL,
+  `first_name` VARCHAR(20) NOT NULL,
+  `last_name` VARCHAR(20) NOT NULL,
   `id_role` INT NULL,
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
@@ -83,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`role` (
   `role` VARCHAR(45) NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id_role`),
-  INDEX `fk_role_users1_idx` (`users_id` ASC),
+  INDEX `fk_role_users1_idx` (`users_id` ASC) ,
   CONSTRAINT `fk_role_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `mydb`.`users` (`id_user`)
@@ -97,12 +99,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`clients` (
   `id_client` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
   `address` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id_client`),
-  INDEX `fk_clients_users1_idx` (`user_id` ASC),
+  INDEX `fk_clients_users1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_clients_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`users` (`id_user`)
@@ -116,12 +116,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`organizer` (
   `id_organizer` INT NOT NULL AUTO_INCREMENT,
-  `o_first_name` VARCHAR(45) NULL,
-  `o_last_name` VARCHAR(45) NULL,
   `honorarium` DOUBLE NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id_organizer`),
-  INDEX `fk_organizer_users1_idx` (`user_id` ASC),
+  INDEX `fk_organizer_users1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_organizer_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`users` (`id_user`)
@@ -135,12 +133,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`distributor` (
   `id_distributor` INT NOT NULL AUTO_INCREMENT,
-  `d_first_name` VARCHAR(45) NULL,
-  `d_last_name` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
   `honorarium` DOUBLE NOT NULL,
   PRIMARY KEY (`id_distributor`),
-  INDEX `fk_distributor_users1_idx` (`user_id` ASC),
+  INDEX `fk_distributor_users1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_distributor_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`users` (`id_user`)
@@ -157,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`organizer-events` (
   `organizer_id` INT NOT NULL,
   `event_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_organizer-events_organizer1_idx` (`organizer_id` ASC),
-  INDEX `fk_organizer-events_event1_idx` (`event_id` ASC),
+  INDEX `fk_organizer-events_organizer1_idx` (`organizer_id` ASC) ,
+  INDEX `fk_organizer-events_event1_idx` (`event_id` ASC) ,
   CONSTRAINT `fk_organizer-events_organizer1`
     FOREIGN KEY (`organizer_id`)
     REFERENCES `mydb`.`organizer` (`id_organizer`)
@@ -181,8 +177,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`distributor-events` (
   `event_id_event` INT NOT NULL,
   `tickets_sold` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_distributor-events_distributor1_idx` (`distributor_id` ASC),
-  INDEX `fk_distributor-events_event1_idx` (`event_id_event` ASC),
+  INDEX `fk_distributor-events_distributor1_idx` (`distributor_id` ASC) ,
+  INDEX `fk_distributor-events_event1_idx` (`event_id_event` ASC) ,
   CONSTRAINT `fk_distributor-events_distributor1`
     FOREIGN KEY (`distributor_id`)
     REFERENCES `mydb`.`distributor` (`id_distributor`)
@@ -207,6 +203,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`type-seat` (
 ENGINE = InnoDB;
 
 
+
+
 -- -----------------------------------------------------
 -- Table `mydb`.`seats`
 -- -----------------------------------------------------
@@ -216,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`seats` (
   `type-seat_id` INT NOT NULL,
   `all_seats` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_seats_type-seat1_idx` (`type-seat_id` ASC),
+  INDEX `fk_seats_type-seat1_idx` (`type-seat_id` ASC) ,
   CONSTRAINT `fk_seats_type-seat1`
     FOREIGN KEY (`type-seat_id`)
     REFERENCES `mydb`.`type-seat` (`id`)
