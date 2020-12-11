@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.oktayosman.CreateOrganizerController">
+   <children>
+      <AnchorPane prefHeight="82.0" prefWidth="520.0">
+         <children>
+            <Label layoutX="178.0" layoutY="28.0" text="Promoting organizer">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Label layoutX="98.0" layoutY="116.0" text="Username" />
+      <Label layoutX="98.0" layoutY="152.0" text="Address" />
+      <Label layoutX="98.0" layoutY="185.0" text="Phone number" />
+      <Label layoutX="98.0" layoutY="220.0" text="Honorarium" />
+      <TextField fx:id="usernameTextField" layoutX="195.0" layoutY="112.0" prefHeight="25.0" prefWidth="206.0" promptText="Username" />
+      <TextField fx:id="addressTextField" layoutX="195.0" layoutY="148.0" prefHeight="25.0" prefWidth="206.0" promptText="Address" />
+      <TextField fx:id="phoneTextField" layoutX="195.0" layoutY="181.0" prefHeight="25.0" prefWidth="206.0" promptText="Phone number" />
+      <TextField fx:id="honorariumTextField" layoutX="195.0" layoutY="216.0" prefHeight="25.0" prefWidth="206.0" promptText="Honorarium" />
+      <Button fx:id="promoteButton" layoutX="218.0" layoutY="271.0" mnemonicParsing="false" onAction="#promoteButtonOnAction" text="Promote" />
+      <Button fx:id="backButton" layoutX="218.0" layoutY="307.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="25.0" prefWidth="62.0" text="Back" />
+   </children>
+</AnchorPane>
